@@ -12,4 +12,6 @@ int findAliveNeighbours(gen life, int x, int y);
 
 gen jumpToNextGeneration(gen life);
 
+gen *simulateAllGenerations(gen base, int lifeLength);
+
 #endif //GAMEOFLIFE_SIMULATION_H

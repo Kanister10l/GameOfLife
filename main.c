@@ -12,6 +12,6 @@ int main(){
     readConfig(config);
     printf("%d",config->gifAfterYears);
     gen life = createMatrix(30,30,0);
-    life = jumpToNextGeneration(life);
+    gen *lifes = simulateAllGenerations(life, config->gifAfterYears);
     return 0;
 }
