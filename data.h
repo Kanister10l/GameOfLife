@@ -12,6 +12,14 @@ typedef struct {
     int y;
 }*gen;
 
+typedef struct {
+    short edgeType;
+    short isRandom;
+    int xSize;
+    int ySize;
+    int gifAfterYears;
+}*conf;
+
 gen createMatrix(int x, int y, short type);
 
 void clearMatrix(gen matrix);
