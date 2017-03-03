@@ -19,3 +19,10 @@ gen createMatrix(int x, int y, short type){
     }
     return matrix;
 }
+
+void clearMatrix(gen matrix){
+    for (int i = 0; i < matrix->x; ++i)
+        free(matrix->matrix[i]);
+    free(matrix->matrix);
+    free(matrix);
+}

@@ -53,15 +53,23 @@ int findAliveNeighbours(gen life, int x, int y){
         else
             return 0;
     }
+    else
+        return 0;
 }
 
 gen jumpToNextGeneration(gen life){
     gen nextOne = createMatrix(life->x, life->y, life->edgeType);
     for (int i = 0; i < life->x; ++i) {
         for (int j = 0; j < life->y; ++j) {
-            if (life->matrix[i][j] == 0){
-
-            }
+            if (life->matrix[i][j] == 0 && findAliveNeighbours(life, i, j) == 3)
+                nextOne->matrix[i][j] = 1;
+            else if (life->matrix[i][j] == 1 && findAliveNeighbours(life, i, j) == (2 || 3))
+                ;
+            else
+                nextOne->matrix[i][j] = 0;
         }
     }
+    life = nextOne;
+    clearMatrix(nextOne);
+    return life;
 }
