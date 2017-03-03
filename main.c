@@ -11,14 +11,8 @@
 int main(){
     conf config = malloc(sizeof * config);
     readConfig(config);
-    gen life = createMatrix(100,100,0);
+    gen life = createMatrix(30,30,0);
     createRandomGeneration(life, config->probability);
-    gen *lifes = simulateAllGenerations(life, config->gifAfterYears);
-    for (int i = 0; i < lifes[99]->x; ++i) {
-        for (int j = 0; j < lifes[99]->y; ++j) {
-            printf("%d", lifes[0]->matrix[i][j]);
-        }
-        printf("\n");
-    }
+    gen *lifes = simulateAllGenerations(life, config->gifAfterYears);   //lifes to tablica generacji do gif
     return 0;
 }
