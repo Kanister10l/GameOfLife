@@ -20,6 +20,8 @@ static int handler(void* user, const char* section, const char* name, const char
         pconfig->xSize = atoi(value);
     else if (MATCH("random", "ySize"))
         pconfig->ySize = atoi(value);
+    else if (MATCH("random", "probability"))
+        pconfig->probability = atof(value);
     else
         return 0;
     return 1;
