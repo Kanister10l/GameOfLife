@@ -55,6 +55,7 @@ int findAliveNeighbours(gen life, int x, int y){
     }
     else
         return 0;
+    return n;
 }
 
 gen jumpToNextGeneration(gen life){
