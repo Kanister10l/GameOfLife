@@ -37,8 +37,6 @@ gen jumpToNextGeneration(gen life){
                 nextOne->matrix[i][j] = 0;
         }
     }
-    //clearMatrix(life);
-    //life = nextOne;
     return nextOne;
 }
 
