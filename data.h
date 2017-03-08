@@ -23,6 +23,8 @@ typedef struct {
 
 gen createMatrix(int x, int y, short type);
 
-void clearMatrix(gen matrix);
+void freeMatrix(gen matrix);
+
+void printMatrix(gen matrix);
 
 #endif //GAMEOFLIFE_DATA_H

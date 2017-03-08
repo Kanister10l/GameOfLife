@@ -14,11 +14,6 @@ int main(){
     gen life = createMatrix(100,100,0);
     createRandomGeneration(life, config->probability);
     gen *lifes = simulateAllGenerations(life, config->gifAfterYears);   //lifes to tablica generacji do gif
-    for (int i = 0; i < 100; ++i) {
-        for (int j = 0; j < 100; ++j) {
-            printf("%d",lifes[99]->matrix[i][j]);
-        }
-        printf("\n");
-    }
+    printMatrix(lifes[99]);
     return 0;
 }
