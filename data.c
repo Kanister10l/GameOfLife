@@ -7,8 +7,8 @@
 //
 gen createMatrix(int x, int y, short type){
     gen matrix = malloc(sizeof * matrix);
-    matrix->x = x + 2;
-    matrix->y = y + 2;
+    matrix->x = x;
+    matrix->y = y;
     matrix->edgeType = type;
     matrix->matrix = malloc((x + 2) * sizeof * matrix->matrix);
     for (int i = 0; i < x + 2; ++i)
@@ -22,15 +22,15 @@ gen createMatrix(int x, int y, short type){
 }
 
 void freeMatrix(gen matrix){
-    for (int i = 0; i < matrix->x; ++i)
+    for (int i = 0; i < matrix->x + 2; ++i)
         free(matrix->matrix[i]);
     free(matrix->matrix);
     free(matrix);
 }
 
 void printMatrix(gen matrix){
-    for (int i = 1; i < matrix->x - 1; ++i) {
-        for (int j = 1; j < matrix->y - 1; ++j) {
+    for (int i = 1; i < matrix->x + 1; ++i) {
+        for (int j = 1; j < matrix->y + 1; ++j) {
             printf("%d",matrix->matrix[i][j]);
         }
         printf("\n");

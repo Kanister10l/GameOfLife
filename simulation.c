@@ -27,8 +27,8 @@ int findAliveNeighbours(gen life, int x, int y){
 
 gen jumpToNextGeneration(gen life){
     gen nextOne = createMatrix(life->x, life->y, life->edgeType);
-    for (int i = 1; i < life->x - 1; ++i) {
-        for (int j = 1; j < life->y - 1; ++j) {
+    for (int i = 1; i < life->x + 1; ++i) {
+        for (int j = 1; j < life->y + 1; ++j) {
             if (life->matrix[i][j] == 0 && findAliveNeighbours(life, i, j) == 3)
                 nextOne->matrix[i][j] = 1;
             else if (life->matrix[i][j] == 1 && (findAliveNeighbours(life, i, j) == 2 || findAliveNeighbours(life, i, j) == 3))
