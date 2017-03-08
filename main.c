@@ -12,13 +12,10 @@
 int main(){
     conf config = malloc(sizeof * config);
     readConfig(config);
-
-    int width=100, height=100; //wielkosc planszy
-
-    gen life = createMatrix(width,height,0);
+    gen life = createMatrix(config->xSize,config->ySize,0);
     createRandomGeneration(life, config->probability);
     gen *lifes = simulateAllGenerations(life, config->gifAfterYears);   //lifes to tablica generacji do gif
 
-    prepareGif(width,height,"anim.gif",config->gifAfterYears,lifes);
+    prepareGif(config,"test.gif",lifes);
     return 0;
 }

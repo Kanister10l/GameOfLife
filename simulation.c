@@ -6,22 +6,14 @@
 //
 int findAliveNeighbours(gen life, int x, int y){
     int n = 0;
-    if (life->matrix[x-1][y-1] == 1)
-        n++;
-    if (life->matrix[x-1][y] == 1)
-        n++;
-    if (life->matrix[x-1][y+1] == 1)
-        n++;
-    if (life->matrix[x][y-1] == 1)
-        n++;
-    if (life->matrix[x][y+1] == 1)
-        n++;
-    if (life->matrix[x+1][y-1] == 1)
-        n++;
-    if (life->matrix[x+1][y] == 1)
-        n++;
-    if (life->matrix[x+1][y+1] == 1)
-        n++;
+    n+=life->matrix[x-1][y-1];
+    n+=life->matrix[x-1][y];
+    n+=life->matrix[x-1][y+1];
+    n+=life->matrix[x][y-1];
+    n+=life->matrix[x][y+1];
+    n+=life->matrix[x+1][y-1];
+    n+=life->matrix[x+1][y];
+    n+=life->matrix[x+1][y+1];
     return n;
 }
 

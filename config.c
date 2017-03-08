@@ -22,6 +22,10 @@ static int handler(void* user, const char* section, const char* name, const char
         pconfig->ySize = atoi(value);
     else if (MATCH("random", "probability"))
         pconfig->probability = atof(value);
+    else if (MATCH("gif", "speed"))
+        pconfig->speed = atoi(value);
+    else if (MATCH("gif", "zoom"))
+        pconfig->zoom = atoi(value);
     else
         return 0;
     return 1;

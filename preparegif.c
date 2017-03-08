@@ -1,6 +1,7 @@
 #include <malloc.h>
 #include "preparegif.h"
 #include "gifsave.h"
+#include "data.h"
 
 //
 // Created by HubertDryja on 2017-03-08.
@@ -19,22 +20,22 @@ static void copyMatrix(gen life){
         }
     }
 }
-int prepareGif(int width, int height, char* fileName, int lifesNum, gen* lifes){
+int prepareGif(conf config, char* fileName, gen* lifes){
     //allocate memory for screen
-    Screen = malloc( width * sizeof(unsigned char*));
-    for (int i = 0 ;i<width;i++){
-        Screen[i] = malloc (height * sizeof(unsigned char));
+    Screen = malloc( config->xSize * sizeof(unsigned short*));
+    for (int i = 0 ;i<config->xSize;i++){
+        Screen[i] = malloc (config->ySize * sizeof(unsigned short));
     }
 
-    GIF_Create(fileName, width, height, 2, 8); // init gif
+    GIF_Create(fileName, config->xSize, config->ySize, 2, 8); // init gif
 
     GIF_SetColor(0, 255, 255, 255);        /* white, the background */
     GIF_SetColor(1, 0, 0, 0);        /* black */
 
     GIF_WriteHeader(0);
-    for(int i=0;i<lifesNum;i++){
+    for(int i=0;i<config->gifAfterYears;i++){
         copyMatrix(lifes[i]);
-        GIF_AddFrame(0, 0, -1, -1,50, getPixel);
+        GIF_AddFrame(0, 0, -1, -1,config->speed, getPixel);
     }
     GIF_Close();
     return 0;

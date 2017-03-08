@@ -19,6 +19,8 @@ typedef struct {
     int ySize;
     int gifAfterYears;
     double probability;
+    int speed;
+    int zoom;
 }*conf;
 
 gen createMatrix(int x, int y, short type);

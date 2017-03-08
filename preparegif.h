@@ -6,5 +6,5 @@
 #ifndef GAMEOFLIFE_PREPAREGIF_H
 #define GAMEOFLIFE_PREPAREGIF_H
 
-int prepareGif(int width, int height, char * fileName,int lifesNum,  gen* lifes);
+int prepareGif(conf config, char * fileName, gen* lifes);
 #endif //GAMEOFLIFE_PREPAREGIF_H
