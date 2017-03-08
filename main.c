@@ -7,13 +7,18 @@
 #include "config.h"
 #include "simulation.h"
 #include "random.h"
+#include "preparegif.h"
 
 int main(){
     conf config = malloc(sizeof * config);
     readConfig(config);
-    gen life = createMatrix(20,20,1);
+
+    int width=100, height=100; //wielkosc planszy
+
+    gen life = createMatrix(width,height,0);
     createRandomGeneration(life, config->probability);
     gen *lifes = simulateAllGenerations(life, config->gifAfterYears);   //lifes to tablica generacji do gif
-    printMatrix(lifes[99]);
+
+    prepareGif(width,height,"anim.gif",config->gifAfterYears,lifes);
     return 0;
 }
