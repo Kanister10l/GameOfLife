@@ -11,7 +11,7 @@
 int main(){
     conf config = malloc(sizeof * config);
     readConfig(config);
-    gen life = createMatrix(20,20,0);
+    gen life = createMatrix(20,20,1);
     createRandomGeneration(life, config->probability);
     gen *lifes = simulateAllGenerations(life, config->gifAfterYears);   //lifes to tablica generacji do gif
     printMatrix(lifes[99]);

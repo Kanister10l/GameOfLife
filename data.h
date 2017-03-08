@@ -27,4 +27,6 @@ void freeMatrix(gen matrix);
 
 void printMatrix(gen matrix);
 
+void setEdge(gen matrix);
+
 #endif //GAMEOFLIFE_DATA_H

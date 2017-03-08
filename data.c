@@ -18,6 +18,7 @@ gen createMatrix(int x, int y, short type){
             matrix->matrix[j][i] = 0;
         }
     }
+    setEdge(matrix);
     return matrix;
 }
 
@@ -34,5 +35,19 @@ void printMatrix(gen matrix){
             printf("%d",matrix->matrix[i][j]);
         }
         printf("\n");
+    }
+}
+
+//For edgeType = 0 there is no need to use this function
+void setEdge(gen matrix){
+    if (matrix->edgeType == 1){
+        for (int i = 0; i < matrix->y + 2; ++i)
+            matrix->matrix[0][i] = 1;
+        for (int i = 0; i < matrix->y + 2; ++i)
+            matrix->matrix[matrix->x+1][i] = 1;
+        for (int i = 0; i < matrix->x + 2; ++i)
+            matrix->matrix[i][0] = 1;
+        for (int i = 0; i < matrix->x + 2; ++i)
+            matrix->matrix[i][matrix->y+1] = 1;
     }
 }

@@ -46,7 +46,6 @@ gen *simulateAllGenerations(gen base, int lifeLength){
     gen *lifes = malloc(lifeLength * sizeof * lifes);
     for (int i = 0; i < lifeLength; ++i)
         lifes[i] = createMatrix(base->x, base->y, base->edgeType);
-
     lifes[0] = base;
     for (int j = 1; j < lifeLength; ++j)
         lifes[j] = jumpToNextGeneration(lifes[j-1]);
