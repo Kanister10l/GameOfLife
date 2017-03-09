@@ -13,28 +13,40 @@ static int getPixel(int x, int y)
 {
     return Screen[x][y];
 }
-static void copyMatrix(gen life){
+static void createScreen(gen life,int factor){
     for(int i=0;i<life->x;i++){
         for(int j=0;j<life->y;j++){
-            Screen[i][j]= life->matrix[i][j];
+            /* write larger square now if zoom >1 */
+            for(int k=0;k<factor;k++){
+                for(int g=0;g<factor;g++){
+                    Screen[factor*i+k][factor*j+g] = life->matrix[i][j];
+                }
+            }
         }
     }
 }
 int prepareGif(conf config, char* fileName, gen* lifes){
     //allocate memory for screen
-    Screen = malloc( config->xSize * sizeof(unsigned short*));
-    for (int i = 0 ;i<config->xSize;i++){
-        Screen[i] = malloc (config->ySize * sizeof(unsigned short));
+    Screen = malloc( config->xSize * config->zoom * sizeof(unsigned short*));
+    for (int i = 0 ;i<config->xSize * config->zoom;i++){
+        Screen[i] = malloc (config->ySize * config->zoom  * sizeof(unsigned short));
     }
 
-    GIF_Create(fileName, config->xSize, config->ySize, 2, 8); // init gif
+    GIF_Create(fileName, config->xSize* config->zoom, config->ySize* config->zoom, 3, 8); // init gif
 
     GIF_SetColor(0, 255, 255, 255);        /* white, the background */
     GIF_SetColor(1, 0, 0, 0);        /* black */
-
+    GIF_SetColor(2, 255, 133, 162); /*pink for Kamil */
     GIF_WriteHeader(0);
+    //first frame
+    for(int i=0;i<config->xSize * config->zoom;i++){
+        for(int j=0;j<config->ySize * config->zoom;j++){
+            Screen[i][j] = 2;
+        }
+    }
+    GIF_AddFrame(0, 0, -1, -1,100, getPixel);
     for(int i=0;i<config->gifAfterYears;i++){
-        copyMatrix(lifes[i]);
+        createScreen(lifes[i],config->zoom);
         GIF_AddFrame(0, 0, -1, -1,config->speed, getPixel);
     }
     GIF_Close();
