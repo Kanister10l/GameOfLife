@@ -21,6 +21,10 @@ typedef struct {
     double probability;
     int speed;
     int zoom;
+    int load_from_file;
+    char load_file_name[256];
+    int save_to_file;
+    char save_file_name[256];
 }*conf;
 
 gen createMatrix(int x, int y, short type);

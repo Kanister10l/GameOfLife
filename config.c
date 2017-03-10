@@ -26,6 +26,14 @@ static int handler(void* user, const char* section, const char* name, const char
         pconfig->speed = atoi(value);
     else if (MATCH("gif", "zoom"))
         pconfig->zoom = atoi(value);
+    else if (MATCH("IO_file", "load_from_file"))
+        pconfig->load_from_file = atoi(value);
+    else if (MATCH("IO_file", "save_to_file"))
+        pconfig->save_to_file = atoi(value);
+    else if (MATCH("IO_file", "load_file_name"))
+        strcpy(pconfig->load_file_name, value);
+    else if (MATCH("IO_file", "save_file_name"))
+        strcpy(pconfig->save_file_name, value);
     else
         return 0;
     return 1;
