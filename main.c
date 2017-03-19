@@ -13,17 +13,34 @@
 int main(){
     conf config = malloc(sizeof * config);
     readConfig(config);
-    FILE *output = fopen(config->save_file_name, "w");
-    FILE *input = fopen(config->load_file_name, "r");
-    gen life = createMatrix(config->xSize,config->ySize,0);
-    createRandomGeneration(life, config->probability);
-    //loadGenerationFromFile(input, life);
-    saveGenerationToFile(output, life);
-    fclose(output);
-    fclose(input);
+    gen life = createMatrix(config->xSize, config->ySize, config->edgeType);
+    
+    if (config->load_from_file == 1 && config->isRandom != 1){
+        FILE *input = fopen(config->load_file_name, "r");
+        if (input == NULL){
+            printf("Could not open input file: %s, generating random base generation.", config->load_file_name);
+            createRandomGeneration(life, config->probability);
+        }
+        else
+            loadGenerationFromFile(input, life);
+        fclose(input);
+    }
+    if (config->isRandom == 1)
+        createRandomGeneration(life, config->probability);
 
-    gen *lifes = simulateAllGenerations(life, config->gifAfterYears);   //lifes to tablica generacji do gif
+    gen *lifes = simulateAllGenerations(life, config->gifAfterYears);
 
-    prepareGif(config,"test.gif",lifes);
+    if(config->save_to_file == 1){
+        FILE *output = fopen(config->save_file_name, "w");
+        if (output == NULL)
+            printf("Could not open output file: %s", config->save_file_name);
+        else if (config->generation_to_save >= config->gifAfterYears)
+            printf("Number of generaion to save: %d exceeds life length: %d", config->generation_to_save, config->gifAfterYears);
+        else
+            saveGenerationToFile(output, lifes[config->generation_to_save]);
+        fclose(output);
+    }
+
+    prepareGif(config, config->gif_name, lifes);
     return 0;
 }
