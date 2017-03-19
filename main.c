@@ -46,6 +46,6 @@ int main(){
     for (int i = 0; i < config->gifAfterYears; ++i)
         freeMatrix(lifes[i]);
     free(lifes);
-    
+
     return 0;
 }
