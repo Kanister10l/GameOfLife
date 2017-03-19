@@ -27,6 +27,7 @@ int main(){
     }
     if (config->isRandom == 1)
         createRandomGeneration(life, config->probability);
+
     gen *lifes = simulateAllGenerations(life, config->gifAfterYears);
 
     if(config->save_to_file == 1){
@@ -41,5 +42,10 @@ int main(){
     }
 
     prepareGif(config, config->gif_name, lifes);
+
+    for (int i = 0; i < config->gifAfterYears; ++i)
+        freeMatrix(lifes[i]);
+    free(lifes);
+    
     return 0;
 }
