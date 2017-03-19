@@ -14,7 +14,7 @@ int main(){
     conf config = malloc(sizeof * config);
     readConfig(config);
     gen life = createMatrix(config->xSize, config->ySize, config->edgeType);
-    
+
     if (config->load_from_file == 1 && config->isRandom != 1){
         FILE *input = fopen(config->load_file_name, "r");
         if (input == NULL){
@@ -27,7 +27,6 @@ int main(){
     }
     if (config->isRandom == 1)
         createRandomGeneration(life, config->probability);
-
     gen *lifes = simulateAllGenerations(life, config->gifAfterYears);
 
     if(config->save_to_file == 1){
@@ -35,7 +34,7 @@ int main(){
         if (output == NULL)
             printf("Could not open output file: %s", config->save_file_name);
         else if (config->generation_to_save >= config->gifAfterYears)
-            printf("Number of generaion to save: %d exceeds life length: %d", config->generation_to_save, config->gifAfterYears);
+            printf("Number of generation to save: %d exceeds life length: %d", config->generation_to_save, config->gifAfterYears);
         else
             saveGenerationToFile(output, lifes[config->generation_to_save]);
         fclose(output);

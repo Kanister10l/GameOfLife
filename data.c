@@ -29,9 +29,9 @@ void freeMatrix(gen matrix){
     free(matrix);
 }
 
-void printMatrix(gen matrix){
-    for (int i = 1; i < matrix->x + 1; ++i) {
-        for (int j = 1; j < matrix->y + 1; ++j) {
+void printMatrix(gen matrix){// with border
+    for (int i = 0; i < matrix->x + 2; ++i) {
+        for (int j = 0; j < matrix->y + 2; ++j) {
             printf("%d",matrix->matrix[i][j]);
         }
         printf("\n");
@@ -48,6 +48,16 @@ void setEdge(gen matrix){
         for (int i = 0; i < matrix->x + 2; ++i)
             matrix->matrix[i][0] = 1;
         for (int i = 0; i < matrix->x + 2; ++i)
+            matrix->matrix[i][matrix->y+1] = 1;
+    }
+    else if (matrix->edgeType == 2){
+        for (int i = 0; i < matrix->y + 2; i += 2)
+            matrix->matrix[0][i] = 1;
+        for (int i = 0; i < matrix->y + 2; i += 2)
+            matrix->matrix[matrix->x+1][i] = 1;
+        for (int i = 0; i < matrix->x + 2; i += 2)
+            matrix->matrix[i][0] = 1;
+        for (int i = 0; i < matrix->x + 2; i += 2)
             matrix->matrix[i][matrix->y+1] = 1;
     }
 }
