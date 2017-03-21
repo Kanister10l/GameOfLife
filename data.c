@@ -41,23 +41,23 @@ void printMatrix(gen matrix){// with border
 //For edgeType = 0 there is no need to use this function
 void setEdge(gen matrix){
     if (matrix->edgeType == 1){
-        for (int i = 0; i < matrix->y + 2; ++i)
+        for (int i = 0; i < matrix->y + 2; ++i){
             matrix->matrix[0][i] = 1;
-        for (int i = 0; i < matrix->y + 2; ++i)
             matrix->matrix[matrix->x+1][i] = 1;
-        for (int i = 0; i < matrix->x + 2; ++i)
+        }
+        for (int i = 0; i < matrix->x + 2; ++i){
             matrix->matrix[i][0] = 1;
-        for (int i = 0; i < matrix->x + 2; ++i)
             matrix->matrix[i][matrix->y+1] = 1;
+        }
     }
     else if (matrix->edgeType == 2){
-        for (int i = 0; i < matrix->y + 2; i += 2)
+        for (int i = 0; i < matrix->y + 2; i += 2){
             matrix->matrix[0][i] = 1;
-        for (int i = 0; i < matrix->y + 2; i += 2)
             matrix->matrix[matrix->x+1][i] = 1;
-        for (int i = 0; i < matrix->x + 2; i += 2)
+        }
+        for (int i = 0; i < matrix->x + 2; i += 2){
             matrix->matrix[i][0] = 1;
-        for (int i = 0; i < matrix->x + 2; i += 2)
             matrix->matrix[i][matrix->y+1] = 1;
+        }
     }
 }
